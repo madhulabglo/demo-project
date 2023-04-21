@@ -48,11 +48,11 @@ const ShowEmployees = () => {
                 .then((res) => {
                     setSuccess(res)
                     console.log(success,"success")
-                    if(success.successmessage){
+                    if(success){
                         console.log("yes")
                         setTimeout(() => {
                             setOpens(false)
-                            setSuccess({successmessage:""})
+                            setSuccess({successmessage:"",message:"",errormessage:""})
                         }, 2000)
                     }
                   
