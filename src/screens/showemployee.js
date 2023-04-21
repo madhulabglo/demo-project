@@ -27,7 +27,7 @@ const ShowEmployees = () => {
     const [opens, setOpens] = useState(false)
     const [datas, setDatas] = useState({})
     const [addEmployees, setAddEmployees] = useState([])
-    const [success, setSuccess] = useState({})
+    const [success, setSuccess] = useState({message:"",successmessage:"",errormessage:""})
 
 
     const handleAddChange = (e) => {
@@ -47,10 +47,15 @@ const ShowEmployees = () => {
                 .then((response) => response.json())
                 .then((res) => {
                     setSuccess(res)
-                    setTimeout(() => {
-                        setOpens(false)
-                        setSuccess({})
-                    }, 2000)
+                    console.log(success,"success")
+                    if(success.successmessage){
+                        console.log("yes")
+                        setTimeout(() => {
+                            setOpens(false)
+                            setSuccess({successmessage:""})
+                        }, 2000)
+                    }
+                  
                 })
         }
         catch (e) {
@@ -193,13 +198,20 @@ const ShowEmployees = () => {
                                 <Typography>Add Employees</Typography><br /><br />
                                 <form>
                                     <TextField variant="outlined" type="text" name="name" placeholder="enter name" onChange={handleAddChange} /><br /><br />
+                                    <Typography style={{ fontSize: 16, color: "red" }}>{success.message}</Typography>
                                     <TextField variant="outlined" type="email" name="email" placeholder="enter email" onChange={handleAddChange} /><br /><br />
+                                    <Typography style={{ fontSize: 16, color: "red" }}>{success.message}</Typography>
                                     <TextField variant="outlined" type="text" name="password" placeholder="enter password" onChange={handleAddChange} /><br /><br />
+                                    <Typography style={{ fontSize: 16, color: "red" }}>{success.message}</Typography>
                                     <TextField variant="outlined" type="number" name="age" placeholder="enter age" onChange={handleAddChange} /><br /><br />
+                                    <Typography style={{ fontSize: 16, color: "red" }}>{success.message}</Typography>
                                     <TextField variant="outlined" type="date" name="dob" placeholder="enter dob" onChange={handleAddChange} /><br /><br />
+                                    <Typography style={{ fontSize: 16, color: "red" }}>{success.message}</Typography>
                                     <TextField variant="outlined" type="text" name="city" placeholder="enter city name" onChange={handleAddChange} /><br /><br />
+                                    <Typography style={{ fontSize: 16, color: "red" }}>{success.message}</Typography>
                                     <Button variant="contained" onClick={handleAdd}>submit</Button>
-                                    <Typography style={{ fontSize: 16, color: "green" }}>{success.message}</Typography>
+                                    <Typography style={{ fontSize: 16, color: "red" }}>{success.errormessage}</Typography>
+                                    <Typography style={{ fontSize: 16, color: "green" }}>{success.successmessage}</Typography>
                                 </form>
 
                             </center>

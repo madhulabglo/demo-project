@@ -6,7 +6,7 @@ const LoginScreen = () => {
   const navigate = useNavigate()
   const Email = localStorage.getItem("email")
   const [data, setData] = useState({ email: "", password: "" })
-  const [details, setDetails] = useState({})
+  const [details, setDetails] = useState({email:"",password:"",message:"",data:""})
 
   const handleChange = (e) => {
     e.preventDefault()
@@ -23,15 +23,16 @@ const LoginScreen = () => {
       })
         .then((res) => res.json())
         .then((body) => setDetails(body))
+        .catch((error)=>console.log(error))
 
     }
     catch (error) {
       console.log("error", error)
 
     }
-
-
   }
+  console.log("details",details)
+
   useEffect(() => {
     if (details.token) {
       localStorage.setItem("token", details.token)
@@ -46,7 +47,9 @@ const LoginScreen = () => {
         <form>
           <h3>login Screen</h3>
           <TextField variant="outlined" type="text" name="email" placeholder="enter email" onChange={handleChange} /><br /><br />
+          <Typography style={{ fontSize: 16, color: "red" }}>{details.email}</Typography>
           <TextField variant="outlined" type="text" name="password" placeholder="enter password" onChange={handleChange} /><br /><br />
+          <Typography style={{ fontSize: 16, color: "red" }}>{details.password}</Typography>
           <Button variant="contained" onClick={handleClick}>login</Button><br /><br />
           <Typography style={{ fontSize: 16, color: "red" }}>{details.message}</Typography>
         </form>
