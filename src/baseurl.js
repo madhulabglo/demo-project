@@ -16,7 +16,7 @@ const baseValues = {
     },
     baseHost:{
         dev:"localhost:3000",
-        prod:"https://mernstack-psi.vercel.app"
+        prod:"mernstack-psi.vercel.app"
 
 
     }
