@@ -29,7 +29,7 @@ const ShowEmployees = () => {
     const [opens, setOpens] = useState(false)
     const [datas, setDatas] = useState({})
     const [addEmployees, setAddEmployees] = useState([])
-    const [success, setSuccess] = useState({message:"",successmessage:"",errormessage:""})
+    const [success, setSuccess] = useState({message:"",successmessage:"",errormessage:"",updatemessage:""})
 
 
     const handleAddChange = (e) => {
@@ -50,12 +50,13 @@ const ShowEmployees = () => {
                 .then((res) => {
                     setSuccess(res)
                     console.log(success,"success")
-                    if(success){
-                        console.log("yes")
-                        setTimeout(() => {
-                            setOpens(false)
-                            setSuccess({successmessage:"",message:"",errormessage:""})
-                        }, 2000)
+                    if(res.successmessage){
+                        setOpens(false)
+                        setAddEmployees({})
+                        setTimeout(()=>{
+                            setSuccess({})
+                        },4000)
+
                     }
                   
                 })
@@ -97,10 +98,10 @@ const ShowEmployees = () => {
             .then((response) => response.json())
             .then((body) => {
                 setSuccess(body)
+                setOpen(false)
                 setTimeout(() => {
-                    setOpen(false)
                     setSuccess({})
-                }, 2000)
+                }, 3000)
             })
 
 
@@ -115,7 +116,7 @@ const ShowEmployees = () => {
                 setSuccess(body)
                 setTimeout(() => {
                     setSuccess({})
-                }, 1000)
+                }, 3000)
             })
 
     }
@@ -137,17 +138,21 @@ const ShowEmployees = () => {
             <Button style={{ marginLeft: "80%", marginTop: "60px" }} variant="contained" onClick={handleLogout}>logout</Button>
             <center>
                 <h3>employees </h3>
+
+                <Typography style={{ fontSize: 20, color: "green" }}>{success.successmessage}</Typography>
+                <Typography style={{ fontSize: 20, color: "green" }}>{success.updatemessage}</Typography>
+                <Typography style={{ fontSize: 20, color: "green" }}>{success.deletemessage}</Typography><br/><br/>
                 <Table border={2}>
                     <TableHead>
-                        <TableRow>
-                            <TableCell>id</TableCell>
-                            <TableCell>name</TableCell>
-                            <TableCell>email</TableCell>
-                            <TableCell>age</TableCell>
-                            <TableCell>dob</TableCell>
-                            <TableCell>city</TableCell>
+                        <TableRow style={{backgroundColor:"black"}}>
+                            <TableCell style={{color:"white"}}>ID</TableCell>
+                            <TableCell style={{color:"white"}}>NAME</TableCell>
+                            <TableCell style={{color:"white"}}>EMAIL</TableCell>
+                            <TableCell style={{color:"white"}}>AGE</TableCell>
+                            <TableCell style={{color:"white"}}>DOB</TableCell>
+                            <TableCell style={{color:"white"}}>CITY</TableCell>
                             {admin === "true" &&
-                                <TableCell>actions</TableCell>}
+                                <TableCell style={{color:"white"}}>ACTONS</TableCell>}
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -162,8 +167,8 @@ const ShowEmployees = () => {
                                     <TableCell>{ele.city}</TableCell>
                                     {admin === "true" &&
                                         <TableCell>
-                                            <Button variant="contained" onClick={() => handleEdit(ele)}>edit</Button>&nbsp;&nbsp;
-                                            <Button variant="contained" onClick={() => handleDelete(ele._id)}>delete</Button>
+                                            <Button variant="contained" color="secondary" onClick={() => handleEdit(ele)}>edit</Button>&nbsp;&nbsp;
+                                            <Button variant="contained" color="error" onClick={() => handleDelete(ele._id)}>delete</Button>
                                         </TableCell>}
                                 </TableRow>
                             )
@@ -186,7 +191,7 @@ const ShowEmployees = () => {
                                 <TextField variant="outlined" type="date" name="dob" value={datas.dob} onChange={handleChange} /><br /><br />
                                 <TextField variant="outlined" type="text" name="city" value={datas.city} onChange={handleChange} /><br /><br />
                                 <Button variant="contained" onClick={handleSubmit}>Submit</Button>
-                                <Typography style={{ fontSize: 16, color: "green" }}>{success.message}</Typography>
+                                {/* <Typography style={{ fontSize: 16, color: "green" }}>{success.message}</Typography> */}
                             </center>
                         </Box>
                     </Modal>
@@ -199,21 +204,20 @@ const ShowEmployees = () => {
                                 <Typography style={{ marginLeft: "100%", cursor: "pointer" }} onClick={() => setOpens(false)}>X</Typography>
                                 <Typography>Add Employees</Typography><br /><br />
                                 <form>
-                                    <TextField variant="outlined" type="text" name="name" placeholder="enter name" onChange={handleAddChange} /><br /><br />
+                                    <TextField variant="outlined" type="text" name="name" value={addEmployees.name}  placeholder="enter name" onChange={handleAddChange} /><br /><br />
                                     <Typography style={{ fontSize: 16, color: "red" }}>{success.message}</Typography>
-                                    <TextField variant="outlined" type="email" name="email" placeholder="enter email" onChange={handleAddChange} /><br /><br />
+                                    <TextField variant="outlined" type="email" name="email" value={addEmployees.email}  placeholder="enter email" onChange={handleAddChange} /><br /><br />
                                     <Typography style={{ fontSize: 16, color: "red" }}>{success.message}</Typography>
-                                    <TextField variant="outlined" type="text" name="password" placeholder="enter password" onChange={handleAddChange} /><br /><br />
+                                    <TextField variant="outlined" type="text" name="password" value={addEmployees.password}  placeholder="enter password" onChange={handleAddChange} /><br /><br />
                                     <Typography style={{ fontSize: 16, color: "red" }}>{success.message}</Typography>
-                                    <TextField variant="outlined" type="number" name="age" placeholder="enter age" onChange={handleAddChange} /><br /><br />
+                                    <TextField variant="outlined" type="number" name="age" value={addEmployees.age}  placeholder="enter age" onChange={handleAddChange} /><br /><br />
                                     <Typography style={{ fontSize: 16, color: "red" }}>{success.message}</Typography>
-                                    <TextField variant="outlined" type="date" name="dob" placeholder="enter dob" onChange={handleAddChange} /><br /><br />
+                                    <TextField variant="outlined" type="date" name="dob" value={addEmployees.dob}  placeholder="enter dob" onChange={handleAddChange} /><br /><br />
                                     <Typography style={{ fontSize: 16, color: "red" }}>{success.message}</Typography>
-                                    <TextField variant="outlined" type="text" name="city" placeholder="enter city name" onChange={handleAddChange} /><br /><br />
+                                    <TextField variant="outlined" type="text" name="city" value={addEmployees.city}  placeholder="enter city name" onChange={handleAddChange} /><br /><br />
                                     <Typography style={{ fontSize: 16, color: "red" }}>{success.message}</Typography>
                                     <Button variant="contained" onClick={handleAdd}>submit</Button>
                                     <Typography style={{ fontSize: 16, color: "red" }}>{success.errormessage}</Typography>
-                                    <Typography style={{ fontSize: 16, color: "green" }}>{success.successmessage}</Typography>
                                 </form>
 
                             </center>
