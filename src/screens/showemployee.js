@@ -137,11 +137,11 @@ const ShowEmployees = () => {
 
             <Button style={{ marginLeft: "80%", marginTop: "60px" }} variant="contained" onClick={handleLogout}>logout</Button>
             <center>
-                <h3>employees </h3>
+                <h3>employees </h3><br/>
 
-                <Typography style={{ fontSize: 20, color: "green" }}>{success.successmessage}</Typography>
-                <Typography style={{ fontSize: 20, color: "green" }}>{success.updatemessage}</Typography>
-                <Typography style={{ fontSize: 20, color: "green" }}>{success.deletemessage}</Typography><br/><br/>
+                <Typography style={{ fontSize: 16, color: "green" }}>{success.successmessage}</Typography>
+                <Typography style={{ fontSize: 16, color: "green" }}>{success.updatemessage}</Typography>
+                <Typography style={{ fontSize: 16, color: "green" }}>{success.deletemessage}</Typography><br/><br/>
                 <Table border={2}>
                     <TableHead>
                         <TableRow style={{backgroundColor:"black"}}>
