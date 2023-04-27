@@ -1,10 +1,11 @@
-// const mode = "dev"/
-const mode ="prod"
+const mode = "dev"
+// const mode ="prod"
 
 
 // http://192.168.1.86:3001
 // http://localhost:3000/
 // https://demo-project-backend-nnef.vercel.app/
+// https://mernstack-psi.vercel.app/
 
 
 const baseValues = {
@@ -15,7 +16,7 @@ const baseValues = {
     },
     baseHost:{
         dev:"localhost:3000",
-        prod:"demo-project-backend-nnef.vercel.app"
+        prod:"https://mernstack-psi.vercel.app"
 
 
     }
