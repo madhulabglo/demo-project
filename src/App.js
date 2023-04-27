@@ -1,10 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as  Router, Routes,Route } from 'react-router-dom';
+import LoginScreen from './screens/loginscreen';
+import ShowEmployees from './screens/showemployee';
+
 
 function App() {
   return (
     <div className="App">
-      {console.log("frontend")}
+        <Router>
+          <Routes>
+          <Route exact path="/" element={<LoginScreen/>}/>
+            <Route exact path="/employee" element={<ShowEmployees/>}/>
+          </Routes>
+        </Router>
     </div>
   );
 }
