@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react"
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import {useNavigate } from "react-router-dom";
 
+import { baseUrl } from "../baseurl";
+
 
 const style = {
     position: 'absolute',
@@ -39,7 +41,7 @@ const ShowEmployees = () => {
     const handleAdd = async (e) => {
         e.preventDefault()
         try {
-            await fetch("http://localhost:3000/register", {
+            await fetch(`${baseUrl}/register`, {
                 method: "POST",
                 body: JSON.stringify(addEmployees),
                 headers: { "Content-Type": "application/json" }
@@ -66,7 +68,7 @@ const ShowEmployees = () => {
     }
 
     useEffect(() => {
-        fetch("http://localhost:3000/employees")
+        fetch(`${baseUrl}/employees`)
             .then((res) => res.json())
             .then((data) => setEmployee(data))
 
@@ -87,7 +89,7 @@ const ShowEmployees = () => {
     }
 
     const handleSubmit = () => {
-        fetch(`http://localhost:3000/employees/${datas._id}`, {
+        fetch(`${baseUrl}/employees/${datas._id}`, {
             method: "PUT",
             body: JSON.stringify(datas),
             headers: { "Content-Type": "application/json" },
@@ -105,7 +107,7 @@ const ShowEmployees = () => {
     }
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:3000/employees/${id}`, {
+        fetch(`${baseUrl}/employees/${id}`, {
             method: "DELETE",
         })
             .then((response) => response.json())
