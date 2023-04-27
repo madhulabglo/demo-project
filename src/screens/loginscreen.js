@@ -1,6 +1,8 @@
 import { Button, TextField, Typography } from "@mui/material"
 import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import Card from '@mui/material/Card';
+
 
 import { baseUrl } from "../baseurl"
 
@@ -33,7 +35,6 @@ const LoginScreen = () => {
 
     }
   }
-  console.log("details",details)
 
   useEffect(() => {
     if (details.token) {
@@ -46,15 +47,19 @@ const LoginScreen = () => {
   return (
     <>
       <center>
-        <form>
-          <h3>login Screen</h3>
+      <Card sx={{marginTop:"150px",height:400,width:400,borderRadius:10,boxShadow:10}}>
+      <form>
+          <h3>login Screen</h3><br/>
           <TextField variant="outlined" type="text" name="email" placeholder="enter email" onChange={handleChange} /><br /><br />
           <Typography style={{ fontSize: 16, color: "red" }}>{details.email}</Typography>
           <TextField variant="outlined" type="text" name="password" placeholder="enter password" onChange={handleChange} /><br /><br />
-          <Typography style={{ fontSize: 16, color: "red" }}>{details.password}</Typography>
-          <Button variant="contained" onClick={handleClick}>login</Button><br /><br />
+          <Typography style={{ fontSize: 16, color: "red" }}>{details.password}</Typography><br/><br/>
+          <Button variant="contained" onClick={handleClick}>login</Button><br />
           <Typography style={{ fontSize: 16, color: "red" }}>{details.message}</Typography>
         </form>
+
+      </Card>
+       
       </center>
     </>
   )

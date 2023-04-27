@@ -1,6 +1,8 @@
-// const mode = "dev"
+// const mode = "dev"/
 const mode ="prod"
 
+
+// http://192.168.1.86:3001
 // http://localhost:3000/
 // https://demo-project-backend-nnef.vercel.app/
 
