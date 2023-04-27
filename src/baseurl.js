@@ -1,5 +1,5 @@
-const mode = "dev"
-// const mode ="prod"
+// const mode = "dev"
+const mode ="prod"
 
 // http://localhost:3000/
 // https://demo-project-backend-nnef.vercel.app/
