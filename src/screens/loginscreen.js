@@ -2,6 +2,8 @@ import { Button, TextField, Typography } from "@mui/material"
 import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
+import { baseUrl } from "../baseurl"
+
 const LoginScreen = () => {
   const navigate = useNavigate()
   const Email = localStorage.getItem("email")
@@ -16,7 +18,7 @@ const LoginScreen = () => {
   const handleClick = async (e) => {
     e.preventDefault()
     try {
-      await fetch("http://localhost:3000/login", {
+      await fetch(`${baseUrl}/login`, {
         method: "POST",
         body: JSON.stringify(data),
         headers: { "Content-Type": "application/json" },
